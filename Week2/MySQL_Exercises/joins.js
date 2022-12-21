@@ -21,7 +21,11 @@ const executeQuery = (sql) => {
 };
 
 // Write a query that prints names of all authors and their corresponding mentors.
-const sql = `SELECT author_name, mentor FROM authors`;
+const sql =  `
+SELECT au.author_name as authorName, aut.author_name as mentorName 
+FROM authors au
+    LEFT JOIN authors aut 
+    ON au.mentor = aut.author_id`;
 
 // Write a query that prints all columns of authors and their published paper_title. If there is an author without any research_Papers, print the information of that author too.
 const sql1 = `
