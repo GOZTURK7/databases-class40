@@ -1,13 +1,4 @@
-import {
-  accountTable,
-  accountChangesTable,
-} from "./transactions-create-tables.js";
-import {
-  accountValues,
-  accountChangesValues,
-  insertValuesToAccount,
-  insertValuesToAccountChanges,
-} from "./transactions-insert-values.js";
+
 import mysql from "mysql";
 
 const conData = {
@@ -47,17 +38,10 @@ const moneyTransfer = [
   `INSERT INTO account_changes(account_num, amount, change_date, remark)
         VALUES(102, 1000,"2022-12-30", "1000$ has been deposited to account 102");`,
 ];
+
+
+// TRANSACTION
 try {
-  // creates 'account' table and set autoincreament = 100,
-  accountTable.forEach(async (element) => {
-    await startQuery(element);
-  });
-  //   creates 'account_changes' table
-  await startQuery(accountChangesTable);
-  //   inserts initial values to 'account' table
-  await startQuery(insertValuesToAccount, accountValues);
-  //   inserts initial values to 'account_changes' table
-  await startQuery(insertValuesToAccountChanges, accountChangesValues);
   //   passing through 'moneyTransfer' transaction queries
   moneyTransfer.forEach(async (element) => {
     await startQuery(element);
