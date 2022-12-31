@@ -53,7 +53,7 @@ console.log(
 
   // Find all of the episode titles where Bob Ross painted a CLIFF and a LIGHTHOUSE [Should be: NIGHT LIGHT]
 
-  const result3 = await client.db("databaseWeek3").collection("bob_ross_episodes").find({elements: "CLIFF", elements: "LIGHTHOUSE"}).toArray();
+  const result3 = await client.db("databaseWeek3").collection("bob_ross_episodes").find({elements:{$all:["CLIFF", "LIGHTHOUSE"]}}).toArray();
 
   console.log(
     `The episodes that Bob Ross painted a CLIFF and a LIGHTHOUSE are [${result3.map(element => element.title)}]`

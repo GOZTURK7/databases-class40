@@ -11,15 +11,9 @@ const db = mysql.createConnection(connSet);
 
 db.connect();
 
-try {
-  await getPopulation("country", "Netherlands", "NLD", console.log);
-} catch (error) {
-    console.log(error);
-}
-
 const getPopulation = async (Country, name, code, cb) => {
   db.query(
-    `SELECT Population FROM ${Country} WHERE Name = ${db.escape(
+    `SELECT Population FROM ${db.escape(Country)} WHERE Name = ${db.escape(
       name
     )} and code = ${db.escape(code)}`,
     function (err, result) {
@@ -29,3 +23,11 @@ const getPopulation = async (Country, name, code, cb) => {
     }
   );
 };
+
+try {
+  await getPopulation("country", "Netherlands", "NLD 'OR' 1=1;", console.log);
+} catch (error) {
+    console.log(error);
+}
+
+
