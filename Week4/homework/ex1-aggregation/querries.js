@@ -11,7 +11,7 @@ export const totalPopulationOfTheCountryByYear = async (client, country)=>{
             '_id': '$Year', 
             'countPopulation': {
               '$sum': {
-                '$sum': [
+                '$add': [
                   '$M', '$F'
                 ]
               }

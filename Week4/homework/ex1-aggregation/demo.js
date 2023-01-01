@@ -4,10 +4,7 @@ import {
   totalPopulationOfTheCountryByYear,
 } from "./querries.js";
 
-const uri =
-  "mongodb+srv://hyfuser:hyfpassword@cluster0.xgtln7g.mongodb.net/?retryWrites=true&w=majority";
-
-const client = new MongoClient(uri);
+const client = new MongoClient(process.env.MONGODB_URL);
 
 const country = "Netherlands";
 const year = 2020;
